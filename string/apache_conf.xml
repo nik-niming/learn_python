@@ -1,0 +1,16 @@
+<VirtualHost 127.0.0.1:80>
+    # primary vhost
+    DocumentRoot "/www/subdomain"
+    RewriteEngine On
+    RewriteRule "." "/www/subdomain/index.html"
+    # ...
+</VirtualHost>
+                   
+<VirtualHost local2:80>
+    DocumentRoot "/www/subdomain/sub1"
+    ServerName www.sub1.domain.tld
+    ServerPath "/sub1/"
+    RewriteEngine On
+    RewriteRule "^(/sub1/.*)" "/www/subdomain$1"
+    # ...
+</VirtualHost>
