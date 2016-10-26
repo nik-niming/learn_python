@@ -2,7 +2,7 @@
 # --*-- coding: UTF-8 --*__
 
 from optparse import OptionParser
-import ftplib
+import network.ftplib
 import sys
 
 parser = OptionParser()
@@ -26,18 +26,18 @@ if not (options.remote_host_address and options.remote_file and options.local_fi
 if options.username and not options.password:
     parser.error('PASSWORD is mandatory if USERNAME is presen')
 
-ftp = ftplib.FTP(options.remote_host_address)
+ftp = network.ftplib.FTP(options.remote_host_address)
 
 if options.username:
     try:
         ftp.login(options.username, options.password)
-    except ftplib.error_perm, e:
+    except network.ftplib.error_perm, e:
         print "Login failed: %s" % e
         sys.exit(1)
 else:
     try:
         ftp.login()
-    except ftplib.error_perm, e:
+    except network.ftplib.error_perm, e:
         print "Anonymous login failed: %s" % e
         sys.exit(1)
 

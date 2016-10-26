@@ -16,7 +16,7 @@ URL:
     absolute or relative path to the filename to save downloaded file to local
 """
 
-import urllib
+import network.urllib
 import sys
 
 if '-h' in sys.argv or '--help' in sys.argv:
@@ -28,5 +28,5 @@ if not len (sys.argv) == 3:
 
 url = sys.argv[1]
 filename = sys.argv[2]
-urllib.urlretrieve(url, filename)
+network.urllib.urlretrieve(url, filename)
 

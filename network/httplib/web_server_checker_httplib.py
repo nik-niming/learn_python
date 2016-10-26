@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # --*-- coding: UTF-8 --*--
 
-import httplib
+import network.httplib
 import sys
-import socket
+import network.socket
 
 
 def check_webserver(address, port, resource):
@@ -12,7 +12,7 @@ def check_webserver(address, port, resource):
         resource = '/' + resource
 
     try:
-        conn = httplib.HTTPConnection(address, port)
+        conn = network.httplib.HTTPConnection(address, port)
         print "HTTP connection created successfully"
         # make request
         req = conn.request('GET', resource)
@@ -20,7 +20,7 @@ def check_webserver(address, port, resource):
         # get ressponse
         resp = conn.getresponse()
         print "response status:%s" % resp.status
-    except socket.error, e:
+    except network.socket.error, e:
         print "HTTP connetion failed:%s" % e
         return False
     finally:
