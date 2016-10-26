@@ -4,7 +4,7 @@
 # port_scan.py <host> <start_port>-<end-port>
 
 import sys
-from socket import *
+from network.socket import *
 
 host = sys.argv[1]
 portstr = sys.argv[2].split('-')

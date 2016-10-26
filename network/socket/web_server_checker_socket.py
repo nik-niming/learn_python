@@ -1,18 +1,18 @@
 #!/usr/bin/env python
 # --*-- coding: UTF-8 --*--
 
-import socket
+import network.socket
 import re
 import sys
 
 def check_server(address, port):
-    s = socket.socket()
+    s = network.socket.socket()
     print "Attempting to connect to %s on port %s" % (address, port)
     try:
         s.connect((address, port))
         print "Connected to %s on port %s" % (address, port)
         return True
-    except socket.error, e:
+    except network.socket.error, e:
         print "Connecting to %s on port %s failed: %s" % (address, port, e)
         return False
     finally:
@@ -25,7 +25,7 @@ def check_web_server(address, port, resource):
     print "HTTP request:"
     print "|||%s|||" % request_string
 
-    s = socket.socket()
+    s = network.socket.socket()
     try:
         s.connect((address, port))
         print "Connected to %s on port %s" % (address, port)
@@ -33,7 +33,7 @@ def check_web_server(address, port, resource):
         rsp = s.recv(100)
         print "Received 100 bytes of HTTP response"
         print "|||%s|||" % rsp
-    except socket.error, e:
+    except network.socket.error, e:
         print "Connecting to %s on port %s failed: %s" % (address, port, e)
         return False
     finally:
